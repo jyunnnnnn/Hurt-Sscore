@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurt_Score</title>
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="index_page" class="page">
+        <div class="big">
+            疼痛指數紀錄App
+        </div>
+        <div id="container1">
+            <div class="button-container">
+                <button class="a" type="button" id="Create">建立新檔</button>
+                <button class="a" type="button" id="Record_List">查看紀錄</button>
+            </div>
+        </div>
+
+        <div class="ppt">
+            <a class="de" href="https://www.google.com/webhp?hl=zh-TW&sa=X&ved=0ahUKEwiWg46en6yKAxXmcPUHHRExFeEQPAgI" target="_blank">點我查看使用教學</a>
+        </div>
+    </div>
+
+    <div id="data_page" class="page" style="display: none;">
+        <div class="big">
+            疼痛指數紀錄App
+        </div>
+        <div id="container1">
+            <button class="back-button" id="BackToIndex1">&#8592; 返回</button>
+            <div class="data_page">
+                <div class="Data_List">
+                    <div id="Insert_Here"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="recording_page" class="page" style="display: none;">
+        <button class="back-button" id="BackToIndex3">&#8592; 返回</button>
+        <div class="big" id="recordingNumber">編號: </div>
+        <div class="button-container">
+            <button id="pain1">1沒感覺</button>
+            <button id="pain2">2不舒服</button>
+            <button id="pain3">3有一點痛</button>
+            <button id="pain4">4痛</button>
+            <button id="pain5">5非常痛</button>
+            <div class="alert_text">請按下按鈕!</div>
+        </div>
+        <div id="timer">倒數計時：<span id="countdown">0</span> 秒</div>
+    </div>
+
+    <div id="start_page" class="page" style="display: none;">
+        <div class="big">
+            疼痛指數紀錄App
+        </div>
+        <div class="login_page">
+            <div id="container1">
+                <div class="login">
+                    <h2>請輸入編號及時間間隔</h2>
+                    <input type="text" id="Number" placeholder="編號">
+                    <input type="text" id="Time_Interval" placeholder="時間間隔">
+                    <button class="a" id="Start">開始</button>
+                    <button class="a" id="Back">返回</button>
+                </div>
+            </div>
+        </div>
+        <div class="ppt">
+            <a class="de" href="" target="_blank">點我查看使用教學</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
