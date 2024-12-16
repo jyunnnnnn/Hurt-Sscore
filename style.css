@@ -1,244 +1,257 @@
+* {
+    font-family: 微軟正黑體;
+    overflow:hidden;
+   
+}
 
-    * {
-        font-family: 微軟正黑體;
-    }
-    body {
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .big {
-        font-weight: bold;
-        font-size: 50px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    h2 {
-        text-align: center;
-        color: #a3a2a3;
-    }
-    h2:hover {
-        color: black;
-    }
-    #container1 {
-        margin: 50px;
-        padding: 10px;
-        width: 300px;
-        height: auto;
-        background-color: white;
-        border-radius: 5px;
-        border-top: 10px solid #108e68;
-        border-bottom: 10px solid #108e68;
-        box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
-        /*position: relative;*/
+body {
+    overflow: hidden; /* 禁止整个页面滚动 */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(var(--vh, 1vh) * 100);
+    margin: 0;
+    padding: 0;
+}
 
-        /*top: 100px;*/
-        text-align: center;
-    }
-    .button-container {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-        width: 100%;
-    }
-    .button-container button {
-        padding: 10px 20px;
-        font-size: 16px;
-        width: 80%;
-        border: none;
-        border-radius: 5px;
-        background-color: #108e68;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    .button-container button:hover {
-        background-color: rgb(11, 107, 85);
-    }
-    input {
-        padding: 8px;
-        border: none;
-        border: solid 1px #ccc;
-        border-radius: 5px;
-    }
-    .a {
-        color: white;
-        background: #108e68;
-        width: 120px;
-        height: 50px;
-        margin: 10px;
-        padding: 5px;
-        border-radius: 5px;
-        border: 0px;
-        font-size: 20px;
-        flex: auto;
-    }
-    .a:hover {
-        background-color: rgb(11, 107, 85);
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    table, th, td {
-        border: 1px solid #ddd;
-    }
-    th, td {
-        padding: 12px;
-        text-align: left;
-        font-size: 16px;
-    }
-    th {
-        background-color: #f2f2f2;
-        color: #108e68;
-    }
-    td {
-        background-color: #f9f9f9;
-    }
-    hr {
-        margin-top: 20px;
-        border: 0;
-        border-top: 1px solid #ddd;
-    }
-    .ppt {
-        position: relative;
-        font-weight: bold;
-        font-size: 30px;
-        text-align: center;
-        color: gray;
-        text-decoration: none;
-    }
-    .de {
-        position: relative;
-        font-weight: bold;
-        font-size: 30px;
-        text-align: center;
-        color: gray;
-        text-decoration: none;
-    }
-    #Number, #Time_Interval {
-        font-size: 18px;
-        width: 250px;
-        height: 40px;
-        margin: 15px;
-        color: #108e68;
-    }
-    #timer {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        font-size: 30px;
-        font-weight: bold;
-        color: #108e68;
-    }
-    .back-button {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        font-size: 24px;
-        cursor: pointer;
-        color: #108e68;
-        background: none;
-        border: none;
-        padding: 0;
-        transition: color 0.3s;
-    }
-    .back-button:hover {
-        color: #065e3a;
-    }
-    .alert_text {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: red;
-        color: white;
-        padding: 10px 20px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 5px;
-        z-index: 1000;
-        display: none; /* 預設隱藏 */
-    }
+.big {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
+h2 {
+    text-align: center;
+    color: #a3a2a3;
+}
 
+h2:hover {
+    color: black;
+}
 
-    #data_page #container1 {
-        width: auto; /* 寬度自適應內容 */
-        margin:  0; /* 水平置中 */
-        height: 75%;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* 垂直置中子元素 */
-    }
-    
-    /*#Insert_Here {
-        word-wrap: break-word; 
-        max-width: 100%; 
-    }*/
-    #data_page .big{
-        margin: 20px;
-    }
-    #data_page .data_page {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 20px;
-        overflow-y: auto; /* 啟用垂直滾動 */
-        overflow-x: hidden; /* 禁止水平滾動（可根據需求改為 auto） */
-        max-height: 80vh; /* 設定最大高度，讓內容不超出視窗高度 */
-        width: 100%; /* 確保內容寬度適配 */
-        box-sizing: border-box; /* 包括 padding 在內 */
-    }
+#container1 {
+    margin: 50px;
+    padding: 10px;
+    width: 300px;
+    height: auto;
+    background-color: white;
+    border-radius: 5px;
+    border-top: 10px solid #108e68;
+    border-bottom: 10px solid #108e68;
+    box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
-    .Data_List {
-        width: 100%;
-        max-width: 800px; /* 限制最大寬度 */
-        overflow-x: auto; /* 如果內容超出寬度，允許橫向滾動 */
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-    }
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
 
-    #Insert_Here {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px; /* 每個紀錄間的間距 */
-    }
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+    background-color: #108e68;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    .record {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #ffffff;
-        word-wrap: break-word; /* 自動換行 */
-        overflow: hidden; /* 避免溢出 */
-    }
+.button-container button:hover {
+    background-color: rgb(11, 107, 85);
+}
 
-    .record ul {
-        padding-left: 20px; /* 適當縮進 */
-    }
+input {
+    padding: 8px;
+    border: none;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+}
 
-    .record ul li {
-        margin-bottom: 5px; /* 每條記錄之間增加空隙 */
-        line-height: 1.5; /* 增加可讀性 */
-    }
+.a {
+    color: white;
+    background: #108e68;
+    width: 120px;
+    height: 50px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 20px;
+    flex: auto;
+}
 
-    .record h3 {
-        font-size: 18px;
-        margin: 0 0 10px 0;
-    }
+.a:hover {
+    background-color: rgb(11, 107, 85);
+}
 
-    .record p {
-        font-size: 14px;
-        margin: 0 0 10px 0;
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #108e68;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+hr {
+    margin-top: 20px;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+.ppt, .de {
+    position: relative;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    color: gray;
+    text-decoration: none;
+}
+
+#Number, #Time_Interval {
+    font-size: 18px;
+    width: 250px;
+    height: 40px;
+    margin: 15px;
+    color: #108e68;
+}
+
+#timer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #108e68;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #108e68;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #065e3a;
+}
+
+.alert_text {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 1000;
+    display: none; /* 預設隱藏 */
+}
+
+/* 使 data_page 的 container1 只顯示於視口內 */
+#data_page #container1 {
+    width: auto;
+    margin: 0;
+    height: 75%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* data_page 顯示部分 */
+#data_page .big {
+    margin: 20px;
+}
+
+#data_page .data_page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    overflow-y: auto; /* 啟用垂直滾動 */
+    overflow-x: hidden; /* 禁止水平滾動 */
+    max-height: 80vh; /* 設定最大高度，讓內容不超出視窗高度 */
+    width: 100%; /* 確保內容寬度適配 */
+    box-sizing: border-box; /* 包括 padding 在內 */
+}
+
+/* 記錄顯示區域 */
+.Data_List {
+    width: 100%;
+    max-width: 800px; /* 限制最大寬度 */
+    overflow-x: auto; /* 如果內容超出寬度，允許橫向滾動 */
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#Insert_Here {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 每個紀錄間的間距 */
+}
+
+.record {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    word-wrap: break-word; /* 自動換行 */
+    overflow: hidden; /* 避免溢出 */
+}
+
+.record ul {
+    padding-left: 20px; /* 適當縮進 */
+}
+
+.record ul li {
+    margin-bottom: 5px; /* 每條記錄之間增加空隙 */
+    line-height: 1.5; /* 增加可讀性 */
+}
+
+.record h3 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.record p {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
