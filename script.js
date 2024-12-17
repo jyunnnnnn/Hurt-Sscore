@@ -1,3 +1,9 @@
+$(document).on('touchmove', function(event) {
+    if (event.originalEvent.scale !== 1) { // 如果有縮放行為
+        event.preventDefault(); // 阻止縮放
+    }
+});
+
 $(document).ready(function() {
     // 頁面加載後顯示 index_page 頁面
     showPage('#index_page');
@@ -138,7 +144,11 @@ function startCountdown(timeInterval) {
         if (countdownTime <= 0) {
             alertSound.pause();
             alertSound.currentTime = 0; // 重置到音效開始的地方
-            $('.alert_text').hide();
+            $('.record_text').show();
+            // 設定短暫延遲後隱藏記錄文字
+            setTimeout(function() {
+                $('.record_text').hide();
+            }, 800); // 800 毫秒
             $('.alert_text').hide();
             recordPainLevel(); // 記錄疼痛等級
             countdownTime = timeInterval; // 重設倒數

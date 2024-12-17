@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Hurt_Score</title>
     <link rel="icon" type="image/svg+xml" href="icon.svg">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -40,18 +40,21 @@
         </div>
     </div>
 
-    <div id="recording_page" class="page" style="display: none;">
+    <div id="recording_page" class="page" style="display: none; width: 500px;">
+        <div class="container1">
         <button class="back-button" id="BackToIndex3">&#8592; 返回</button>
         <div class="big" id="recordingNumber">編號: </div>
-        <div class="button-container">
-            <button id="pain1">1沒感覺</button>
-            <button id="pain2">2不舒服</button>
-            <button id="pain3">3有一點痛</button>
-            <button id="pain4">4痛</button>
-            <button id="pain5">5非常痛</button>
-            <div class="alert_text">請按下按鈕!</div>
+            <div class="button-container">
+                <button id="pain1">1沒感覺</button>
+                <button id="pain2">2不舒服</button>
+                <button id="pain3">3有一點痛</button>
+                <button id="pain4">4痛</button>
+                <button id="pain5">5非常痛</button>
+                <div class="alert_text">請按下按鈕!</div>
+                <div class="record_text">成功紀錄!</div>
+            </div>
+            <div id="timer">倒數計時：<span id="countdown">0</span> 秒</div>
         </div>
-        <div id="timer">倒數計時：<span id="countdown">0</span> 秒</div>
     </div>
 
     <div id="start_page" class="page" style="display: none;">

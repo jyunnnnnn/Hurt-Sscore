@@ -5,7 +5,7 @@
 }
 
 body {
-    overflow: hidden; /* 禁止整个页面滚动 */
+    overflow: hidden; 
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -181,10 +181,23 @@ hr {
     z-index: 1000;
     display: none; /* 預設隱藏 */
 }
-
+.record_text {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 1000;
+    display: none; /* 預設隱藏 */
+}
 /* 使 data_page 的 container1 只顯示於視口內 */
 #data_page #container1 {
-    width: auto;
+    width: 500px;
     margin: 0;
     height: 75%;
     padding: 10px;
