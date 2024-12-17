@@ -132,7 +132,9 @@ hr {
     color: gray;
     text-decoration: none;
 }
-
+#recordingNumber{
+    color: #03553c;
+}
 #Number, #Time_Interval {
     font-size: 18px;
     width: 250px;
@@ -151,7 +153,7 @@ hr {
 }
 
 .back-button {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     font-size: 24px;
@@ -197,7 +199,7 @@ hr {
 }
 /* 使 data_page 的 container1 只顯示於視口內 */
 #data_page #container1 {
-    width: 500px;
+    width: 400px;
     margin: 0;
     height: 75%;
     padding: 10px;

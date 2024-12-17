@@ -57,7 +57,7 @@ $(document).ready(function() {
     // 點擊 "返回" 按鈕（在 recording_page 中）
     $('#BackToIndex3').click(function() {
         // 顯示確認退出對話框
-        let confirmExit = confirm("是否確定要退出並返回首頁？");
+        let confirmExit = confirm("是否確定要返回首頁並儲存紀錄？");
 
         // 如果點擊確定，則返回首頁並停止紀錄
         if (confirmExit) {
@@ -106,7 +106,7 @@ function startRecording() {
     }
 }
 
-let currentPainLevel = '未輸入';
+let currentPainLevel = 'X';
 // 設定疼痛等級
 function setPainLevel(level) {
     // 儲存選擇的疼痛等級
@@ -132,7 +132,7 @@ function startCountdown(timeInterval) {
         countdownDisplay.text(countdownTime);
         // 檢查倒數剩餘 3 秒
         // 檢查倒數剩餘 3 秒
-        if (countdownTime <= 2 && currentPainLevel === '未輸入') {
+        if (countdownTime <= 2 && currentPainLevel === 'X') {
             // 播放警示音
             alertSound.play();
 
@@ -144,11 +144,13 @@ function startCountdown(timeInterval) {
         if (countdownTime <= 0) {
             alertSound.pause();
             alertSound.currentTime = 0; // 重置到音效開始的地方
-            $('.record_text').show();
-            // 設定短暫延遲後隱藏記錄文字
-            setTimeout(function() {
-                $('.record_text').hide();
-            }, 800); // 800 毫秒
+            if(currentPainLevel !==  'X'){
+                $('.record_text').show();
+                // 設定短暫延遲後隱藏記錄文字
+                setTimeout(function() {
+                    $('.record_text').hide();
+                }, 800); // 800 毫秒
+            }
             $('.alert_text').hide();
             recordPainLevel(); // 記錄疼痛等級
             countdownTime = timeInterval; // 重設倒數
@@ -162,7 +164,7 @@ let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
 
 // 記錄疼痛等級的函數
 function recordPainLevel() {
-    // 記錄疼痛等級，如果沒選擇則為 "未輸入"
+    // 記錄疼痛等級，如果沒選擇則為 "X"
     let painLevel = currentPainLevel;
     let timestamp = new Date().toLocaleString();
     console.log(`記錄時間：${timestamp}, 疼痛等級：${painLevel}`);
@@ -189,7 +191,7 @@ function stopRecording() {
 
 
     clearInterval(countdownInterval); // 清除倒數計時器
-    currentPainLevel = '未輸入'; // 重置疼痛值
+    currentPainLevel = 'X'; // 重置疼痛值
     nowNumber = ""; // 重置編號
     nowTime_interval = ""; // 重置時間
     $('#pain1, #pain2, #pain3, #pain4, #pain5').css('background-color', ''); // 恢復按鈕顏色
