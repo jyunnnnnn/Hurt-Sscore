@@ -43,15 +43,30 @@
 
     <div id="recording_page" class="page" style="display: none; width: 500px;">
         <div class="container1">
-        <button class="back-button" id="BackToIndex3">&#8592; 返回並儲存紀錄</button>
-        <div class="big" id="recordingNumber">編號: </div>
-            <div class="button-container">
-                <button id="pain1">1分 沒感覺</button>
-                <button id="pain2">2分 不舒服</button>
-                <button id="pain3">3分 有點痛</button>
-                <button id="pain4">4分 蠻痛的</button>
-                <button id="pain5">5分 非常痛</button>
-                <div class="alert_text">請按下按鈕!</div>
+        <button class="big" id="BackToIndex3">疼 痛 指 數</button>
+        <div class="big" id="recordingNumber">編號: </div> 
+        <div class="display_area">
+            <div class="alert_text">請按下按鈕!</div>
+        </div>
+        
+            <div  id="choose_pain">
+                
+                <button id="pain1">
+                    <span class="pain-number">1 </span> 沒感覺
+                </button>
+                <button id="pain2">
+                    <span class="pain-number">2 </span> 不舒服
+                </button>
+                <button id="pain3">
+                    <span class="pain-number">3 </span> 有點痛
+                </button>
+                <button id="pain4">
+                    <span class="pain-number">4 </span> 蠻痛的
+                </button>
+                <button id="pain5">
+                    <span class="pain-number">5 </span> 非常痛
+                </button>
+                
                 <div class="record_text">成功紀錄!</div>
             </div>
             <div id="timer">倒數計時：<span id="countdown">0</span> 秒</div>

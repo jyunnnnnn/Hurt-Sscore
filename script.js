@@ -1,9 +1,3 @@
-$(document).on('touchmove', function(event) {
-    if (event.originalEvent.scale !== 1) { // 如果有縮放行為
-        event.preventDefault(); // 阻止縮放
-    }
-});
-
 $(document).ready(function() {
     // 頁面加載後顯示 index_page 頁面
     showPage('#index_page');
@@ -53,18 +47,19 @@ $(document).ready(function() {
     $('#pain5').click(function() {
         setPainLevel(5);
     });
-
+    let lastClickTime = 0;
     // 點擊 "返回" 按鈕（在 recording_page 中）
     $('#BackToIndex3').click(function() {
         // 顯示確認退出對話框
-        let confirmExit = confirm("是否確定要返回首頁並儲存紀錄？");
-
-        // 如果點擊確定，則返回首頁並停止紀錄
-        if (confirmExit) {
-            stopRecording();
-            showPage('#index_page');
-        }
+        const currentTime = new Date().getTime();
+            if (currentTime - lastClickTime < 300) { // 300ms 內視為雙擊
+                stopRecording();
+                showPage('#index_page');
+            }
+            lastClickTime = currentTime;
     });
+    
+
 });
 
 // 顯示指定頁面並隱藏其他頁面
@@ -131,29 +126,25 @@ function startCountdown(timeInterval) {
         countdownTime--;
         countdownDisplay.text(countdownTime);
         // 檢查倒數剩餘 3 秒
-        // 檢查倒數剩餘 3 秒
-        if (countdownTime <= 2 && currentPainLevel === 'X') {
-            // 播放警示音
+        if (countdownTime == 2 ) {
             alertSound.play();
-
-            // 顯示警示文字
             $('.alert_text').show();
-
+            // 播放警示音
+            setTimeout(function() {
+                alertSound.pause();
+                alertSound.currentTime = 0; // 重置到音效開始的地方
+                $('.alert_text').hide();
+            }, 500); // 500 毫秒
+            // 顯示警示文字
+           
+            
         }
         // 每次倒數完 X 秒後，記錄一次數據
         if (countdownTime <= 0) {
-            alertSound.pause();
-            alertSound.currentTime = 0; // 重置到音效開始的地方
-            if(currentPainLevel !==  'X'){
-                $('.record_text').show();
-                // 設定短暫延遲後隱藏記錄文字
-                setTimeout(function() {
-                    $('.record_text').hide();
-                }, 800); // 800 毫秒
-            }
-            $('.alert_text').hide();
             recordPainLevel(); // 記錄疼痛等級
             countdownTime = timeInterval; // 重設倒數
+            $('#pain1, #pain2, #pain3, #pain4, #pain5').css('background-color', ''); // 恢復按鈕顏色
+            currentPainLevel = 'X';
         }
     }, 1000);
 
@@ -198,6 +189,29 @@ function stopRecording() {
     console.log(currentRecord)
 }
 
+// // 顯示紀錄於 data_page
+// function displayRecords() {
+//     let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
+//     let container = $('#Insert_Here');
+//     container.empty(); // 清空現有內容
+
+//     if (Object.keys(records).length === 0) {
+//         container.append('<p>目前尚無紀錄</p>');
+//     } else {
+//         Object.keys(records).forEach(key => {
+//             let record = records[key];
+//             let recordHtml = `
+//                 <div class="record">
+//                     <h3>紀錄 編號: ${record.recordNumber}</h3>
+//                     <ul>
+//                         ${record.recordList.map(entry => `<li>${entry.time} - 疼痛等級: ${entry.level}</li>`).join('')}
+//                     </ul>
+//                 </div>
+//                 <hr>`;
+//             container.append(recordHtml);
+//         });
+//     }
+// }
 // 顯示紀錄於 data_page
 function displayRecords() {
     let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
@@ -211,14 +225,55 @@ function displayRecords() {
             let record = records[key];
             let recordHtml = `
                 <div class="record">
-                    <h3>紀錄 編號: ${record.recordNumber}</h3>
-                    <ul>
-                        ${record.recordList.map(entry => `<li>${entry.time} - 疼痛等級: ${entry.level}</li>`).join('')}
-                    </ul>
+                    <h3 class="record-title" data-record-id="${key}">紀錄 編號: ${record.recordNumber}
+                         <button class="share-button" onclick="downloadRecords('${record.recordNumber}')">⬇️</button>
+                    </h3>
+                    <div class="record-details" style="display: none;">
+                        <ul>
+                            ${record.recordList.map(entry => `
+                                 <li><span>痛度: ${entry.level}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>${entry.time}</span></li>
+                                `).join('')}
+                        </ul>
+                    </div>
                 </div>
                 <hr>`;
             container.append(recordHtml);
         });
+
+        // 點擊編號顯示或隱藏詳細紀錄
+        $('.record-title').on('click', function() {
+            let recordId = $(this).data('record-id');
+            let detailsDiv = $(this).next('.record-details');
+            
+            // 切換顯示隱藏
+            detailsDiv.toggle();
+        });
     }
 }
+
+function downloadRecords(number) {
+    // 获取记录数据
+    let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
+    let record = records[number];
+
+    if (record) {
+        let recordText = `紀錄編號: ${record.recordNumber}\n`;
+        recordText += `時間\t\t痛度\n`;
+        
+        record.recordList.forEach(entry => {
+            recordText += `${entry.time}\t\t${entry.level}\n`;
+        });
+
+        let blob = new Blob([recordText], { type: 'text/plain' });
+        
+        let link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `紀錄編號_${record.recordNumber}.txt`;
+
+        link.click();
+    } else {
+        alert("該紀錄未找到！");
+    }
+}
+
 console.log("OK")

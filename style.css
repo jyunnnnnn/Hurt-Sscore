@@ -44,10 +44,48 @@ h2:hover {
     box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+/* 針對 #choose_pain 下的 .button-container */
+#choose_pain {
+    display: flex;
+    flex-direction: row;  /* 橫向排列按鈕 */
+    gap: 45px;  /* 按鈕之間的間隔 */
+    align-items: center;  /* 垂直居中對齊按鈕 */
+    width: 100%;
+    justify-content: center;  /* 水平居中 */
+}
+
+#choose_pain button {
+    height: 250px;
+    padding: 10px 20px;
+    font-size: 35px;
+    width: auto;  /* 寬度自適應內容 */
+    border: none;
+    border-radius: 5px;
+    background-color: #108e68;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    writing-mode: vertical-rl;  /* 設置按鈕中文字垂直排列 */
+    text-align: center;  /* 文字居中對齊 */
+    display: flex;
+    align-items: center;  /* 垂直居中按鈕內容 */
+    justify-content: center;  /* 水平居中按鈕內容 */
+}
+
+#choose_pain button .pain-number {
+    display: block;  /* 讓數字成為塊級元素 */
+    font-size: 40px;  /* 數字字型調整 */
+    transform: rotate(-90deg);  /* 旋轉數字為垂直排列 */
+    margin-bottom: 30px;  /* 給數字與文字之間一些間隔 */
+}
+
+#choose_pain button:hover {
+    background-color: rgb(11, 107, 85);
+}
 
 .button-container {
-    display: flex;
-    flex-direction: column;
+    display: flex ;
+    flex-direction: column ;
     gap: 15px;
     align-items: center;
     width: 100%;
@@ -168,19 +206,30 @@ hr {
 .back-button:hover {
     color: #065e3a;
 }
+#BackToIndex3 {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 48px;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.display_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* 讓寬度覆蓋父容器 */
+    height: 50px; /* 固定高度，確保空間大小一致 */
+    margin: 20px 0; /* 上下間距 */
+
+}
 
 .alert_text {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
-    border-radius: 5px;
-    z-index: 1000;
+    color: red;
     display: none; /* 預設隱藏 */
 }
 .record_text {
@@ -199,9 +248,9 @@ hr {
 }
 /* 使 data_page 的 container1 只顯示於視口內 */
 #data_page #container1 {
-    width: 400px;
+    width: 800px;
     margin: 0;
-    height: 75%;
+    height: 75vh;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -262,7 +311,7 @@ hr {
 }
 
 .record h3 {
-    font-size: 18px;
+    font-size: 24px;
     margin: 0 0 10px 0;
 }
 
@@ -270,3 +319,19 @@ hr {
     font-size: 14px;
     margin: 0 0 10px 0;
 }
+
+.record-details {
+    font-size: 30px;  /* 可根據需求調整字體大小 */
+}
+
+.share-button {
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;  /* 透明背景 */
+    font-size: 20px;
+    margin-left: 10px;  
+}
+
