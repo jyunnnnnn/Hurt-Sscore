@@ -142,7 +142,7 @@ function startCountdown(timeInterval) {
         // 每次倒數完 X 秒後，記錄一次數據
         if (countdownTime <= 0) {
             recordPainLevel(); // 記錄疼痛等級
-            countdownTime = timeInterval; // 重設倒數
+            countdownTime = Number(timeInterval)+1; // 重設倒數
             $('#pain1, #pain2, #pain3, #pain4, #pain5').css('background-color', ''); // 恢復按鈕顏色
             currentPainLevel = 'X';
         }
@@ -189,30 +189,6 @@ function stopRecording() {
     console.log(currentRecord)
 }
 
-// // 顯示紀錄於 data_page
-// function displayRecords() {
-//     let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
-//     let container = $('#Insert_Here');
-//     container.empty(); // 清空現有內容
-
-//     if (Object.keys(records).length === 0) {
-//         container.append('<p>目前尚無紀錄</p>');
-//     } else {
-//         Object.keys(records).forEach(key => {
-//             let record = records[key];
-//             let recordHtml = `
-//                 <div class="record">
-//                     <h3>紀錄 編號: ${record.recordNumber}</h3>
-//                     <ul>
-//                         ${record.recordList.map(entry => `<li>${entry.time} - 疼痛等級: ${entry.level}</li>`).join('')}
-//                     </ul>
-//                 </div>
-//                 <hr>`;
-//             container.append(recordHtml);
-//         });
-//     }
-// }
-// 顯示紀錄於 data_page
 function displayRecords() {
     let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
     let container = $('#Insert_Here');
@@ -252,7 +228,7 @@ function displayRecords() {
 }
 
 function downloadRecords(number) {
-    // 获取记录数据
+    // 獲取記錄數據
     let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
     let record = records[number];
 
@@ -264,7 +240,7 @@ function downloadRecords(number) {
             recordText += `${entry.time}\t\t${entry.level}\n`;
         });
 
-        let blob = new Blob([recordText], { type: 'text/plain' });
+        let blob = new Blob([`\uFEFF${recordText}`], { type: 'text/plain;charset=utf-8' });
         
         let link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
