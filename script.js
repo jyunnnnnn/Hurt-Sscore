@@ -115,6 +115,7 @@ function setPainLevel(level) {
 }
 
 let countdownInterval; // 倒數計時器的ID
+let flag=0;
 // 開始倒數計時
 function startCountdown(timeInterval) {
     let countdownTime = timeInterval;
@@ -136,7 +137,10 @@ function startCountdown(timeInterval) {
                 $('.alert_text').hide();
             }, 500); // 500 毫秒
             // 顯示警示文字
-            recordPainLevel(); // 記錄疼痛等級
+            if(flag){
+                recordPainLevel(); // 記錄疼痛等級
+            }
+            flag=1;
             countdownTime = Number(timeInterval)+1; // 重設倒數
             $('#pain1, #pain2, #pain3, #pain4, #pain5').css('background-color', ''); // 恢復按鈕顏色
             currentPainLevel = 'X';
@@ -164,6 +168,7 @@ function recordPainLevel() {
 
 // 停止錄製並清除計時器
 function stopRecording() {
+    recordPainLevel(); // 記錄疼痛等級
     currentRecord = {
         recordNumber:nowNumber,
         recordList:currentRecordList
@@ -180,6 +185,7 @@ function stopRecording() {
     currentPainLevel = 'X'; // 重置疼痛值
     nowNumber = ""; // 重置編號
     nowTime_interval = ""; // 重置時間
+    flag = 0; //重置FirstTime flag
     $('#pain1, #pain2, #pain3, #pain4, #pain5').css('background-color', ''); // 恢復按鈕顏色
     console.log(currentRecord)
 }
