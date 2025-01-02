@@ -124,27 +124,31 @@ function startCountdown(timeInterval) {
     const alertSound = new Audio('alert_sound.mp3'); 
     // 每秒更新倒數計時
     countdownInterval = setInterval(function() {
-        countdownTime--;
-        countdownDisplay.text(countdownTime);
+        
         // 每次倒數完 X 秒後，記錄一次數據
-        if (countdownTime <= 0) {
+
+        if (countdownTime == 0) {
+            countdownTime = timeInterval; // 重設倒數
             alertSound.play();
             $('.alert_text').show();
-            // 播放警示音
+            // 播放警示音 顯示警示文字
             setTimeout(function() {
                 alertSound.pause();
                 alertSound.currentTime = 0; // 重置到音效開始的地方
                 $('.alert_text').hide();
             }, 500); // 500 毫秒
-            // 顯示警示文字
+            
             if(flag){
                 recordPainLevel(); // 記錄疼痛等級
             }
             flag=1;
-            countdownTime = Number(timeInterval)+1; // 重設倒數
+            
             $('#pain1, #pain2, #pain3, #pain4, #pain5').css('background-color', ''); // 恢復按鈕顏色
             currentPainLevel = 'X';
+            
         }
+            countdownTime--;
+            countdownDisplay.text(Number(countdownTime)+1);
     }, 1000);
 
 }
