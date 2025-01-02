@@ -125,8 +125,8 @@ function startCountdown(timeInterval) {
     countdownInterval = setInterval(function() {
         countdownTime--;
         countdownDisplay.text(countdownTime);
-        // 檢查倒數剩餘 3 秒
-        if (countdownTime == 2 ) {
+        // 每次倒數完 X 秒後，記錄一次數據
+        if (countdownTime <= 0) {
             alertSound.play();
             $('.alert_text').show();
             // 播放警示音
@@ -136,11 +136,6 @@ function startCountdown(timeInterval) {
                 $('.alert_text').hide();
             }, 500); // 500 毫秒
             // 顯示警示文字
-           
-            
-        }
-        // 每次倒數完 X 秒後，記錄一次數據
-        if (countdownTime <= 0) {
             recordPainLevel(); // 記錄疼痛等級
             countdownTime = Number(timeInterval)+1; // 重設倒數
             $('#pain1, #pain2, #pain3, #pain4, #pain5').css('background-color', ''); // 恢復按鈕顏色
