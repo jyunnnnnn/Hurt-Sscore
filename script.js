@@ -210,8 +210,10 @@ function displayRecords() {
             let recordHtml = `
                 <div class="record">
                     <h3 class="record-title" data-record-id="${key}">紀錄 編號: ${record.recordNumber}
-                        <button class="share-button" onclick="downloadRecords('${record.recordNumber}')">⬇️</button>
-                        <button class="delete-button" onclick="deleteRecord('${record.recordNumber}')">❌</button>
+                        <div class="button-group">
+                            <button class="share-button" onclick="downloadRecords('${record.recordNumber}')">⬇️</button>
+                            <button class="delete-button" onclick="deleteRecord('${record.recordNumber}')">❌</button>
+                        </div>
                     </h3>
                     <div class="record-details" style="display: none;">
                         <ul>
