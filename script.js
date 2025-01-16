@@ -74,6 +74,7 @@ let nowNumber = "";
 let nowTime_interval = "";
 // 開始紀錄功能
 function startRecording() {
+    let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
     const number = $('#Number').val();
     const timeInterval = $('#Time_Interval').val();
     if (number && timeInterval) {
@@ -154,7 +155,7 @@ function startCountdown(timeInterval) {
 }
 let currentRecord = {};
 let currentRecordList = [];
-let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
+
 
 // 記錄疼痛等級的函數
 function recordPainLevel() {
@@ -172,6 +173,8 @@ function recordPainLevel() {
 
 // 停止錄製並清除計時器
 function stopRecording() {
+    let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
+    console.log(currentRecordList)
     recordPainLevel(); // 記錄疼痛等級
     currentRecord = {
         recordNumber:nowNumber,
@@ -207,7 +210,8 @@ function displayRecords() {
             let recordHtml = `
                 <div class="record">
                     <h3 class="record-title" data-record-id="${key}">紀錄 編號: ${record.recordNumber}
-                         <button class="share-button" onclick="downloadRecords('${record.recordNumber}')">⬇️</button>
+                        <button class="share-button" onclick="downloadRecords('${record.recordNumber}')">⬇️</button>
+                        <button class="delete-button" onclick="deleteRecord('${record.recordNumber}')">❌</button>
                     </h3>
                     <div class="record-details" style="display: none;">
                         <ul>
@@ -256,5 +260,27 @@ function downloadRecords(number) {
         alert("該紀錄未找到！");
     }
 }
+function deleteRecord(number) {
+    let records = JSON.parse(localStorage.getItem('Hurt_Score_records')) || {};
+    let record = records[number];
 
+    if (record) {
+        if (confirm("確定要刪除此紀錄嗎？")) {
+            delete records[number];
+            localStorage.setItem('Hurt_Score_records', JSON.stringify(records));
+            alert("紀錄已刪除！");
+              // 清空相關變數
+            if (nowNumber === number) {
+                currentRecordList = [];
+                nowNumber = "";
+                nowTime_interval = "";
+                currentPainLevel = 'X';
+                console.log("內存已清空。");
+            }
+            displayRecords(); // Refresh the display after deletion
+        }
+    } else {
+        alert("該紀錄未找到！");
+    }
+}
 console.log("OK")
