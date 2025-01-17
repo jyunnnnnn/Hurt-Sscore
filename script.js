@@ -83,20 +83,18 @@ function startRecording() {
         nowTime_interval=timeInterval;
         if (records[nowNumber]) {
             // 如果編號已存在，繼續沿用記錄
-            console.log(`編號 ${nowNumber} 已存在，繼續沿用之前的紀錄。`);
-            currentRecordList = records[nowNumber].recordList || [];
+            console.log(`編號 ${nowNumber} 已存在，請重新輸入。`);
+            alert(`編號 ${nowNumber} 已存在，請重新輸入。`);
         } else {
             // 如果編號不存在，初始化新記錄
             console.log(`編號 ${nowNumber} 不存在，創建新的紀錄。`);
             currentRecordList = [];
+             // 跳轉到錄製頁面
+            showPage('#recording_page');
+            $('#recordingNumber').text(`編號: ${number}`);
+            // 開始倒數計時
+            startCountdown(timeInterval); // 傳遞使用者設定的時間間隔
         }
-        console.log("編號:",nowNumber,"時間間隔:",nowTime_interval);
-        // 跳轉到錄製頁面
-        showPage('#recording_page');
-        $('#recordingNumber').text(`編號: ${number}`);
-
-        // 開始倒數計時
-        startCountdown(timeInterval); // 傳遞使用者設定的時間間隔
     } else {
         alert("請輸入編號和時間間隔");
     }
